@@ -19,6 +19,7 @@ class ContextMenu {
     document.addEventListener("contextmenu", (event: MouseEvent) => this.preventDefaultRightClick(event));
   }
 
+  // Takes an array of objects where each object defines:
   public setMenuItems(items: MenuItem[]): void {
     this.menuItems = items;
     this.renderMenuItems();
@@ -52,6 +53,7 @@ class ContextMenu {
     });
   }
 
+  // Displays the menu at the right-click position, adjusting to the viewport.
   private show(event: MouseEvent): void {
     event.preventDefault();
     const { clientX, clientY } = event;
@@ -75,6 +77,7 @@ class ContextMenu {
     this.menu.classList.add("hidden");
   }
 
+  // Detects clicks outside the menu and hides it.
   private handleClickOutside(event: MouseEvent): void {
     if (!this.menu.contains(event.target as Node)) {
       this.hide();
@@ -87,6 +90,7 @@ class ContextMenu {
     }
   }
 
+  // Prevents default context menu behavior outside the target area.
   private preventDefaultRightClick(event: MouseEvent): void {
     if (!this.targetArea.contains(event.target as Node)) {
       event.preventDefault();
